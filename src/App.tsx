@@ -1,5 +1,6 @@
 import "./App.css";
 import Article from "./components/article/page";
+import Footer from "./components/footer/page";
 import Navbar from "./components/navbar/page";
 import Products from "./components/products/page";
 
@@ -16,7 +17,7 @@ export default function App(){
     </main>
 
     <footer>
-
+      <Footer/>
     </footer>
     </>
   )

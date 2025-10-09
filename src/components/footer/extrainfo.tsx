@@ -107,7 +107,7 @@ export default function ExtraInfo(){
                                     {items.title}
                                 </span>
                             }else{
-                                return <a href={items.link} className="h-6 w-6 flex justify-center items-center text-[#222222] transition-all duration-100 ease-linear hover:bg-[#6A6A6A]/10 rounded-full">
+                                return <a href={items.link} className="h-6 w-6 flex justify-center items-center text-[#222222] transition-all duration-100 ease-linear hover:bg-[#6A6A6A]/10 rounded-full" key={index}>
                                     {items.icon}
                                 </a>
                             }

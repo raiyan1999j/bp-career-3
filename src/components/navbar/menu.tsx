@@ -3,13 +3,21 @@ import Home from "../../assets/home.png";
 import Experience from "../../assets/experience.png";
 import Services from "../../assets/services.png";
 import { CiGlobe } from "react-icons/ci";
-import { IoMenu, IoMenuSharp } from "react-icons/io5";
+import { IoMenu } from "react-icons/io5";
+import HostModal from "./hostmodal";
+import { useState } from "react";
 
 type MenusType = {
     icon: string,
     title: string,
     link: string,
     notification: string | null
+}
+
+export type MenuConfigType = {
+    hostMenu: boolean,
+    globeMenu: boolean,
+    menu: boolean
 }
 
 const menus:MenusType[] = [
@@ -34,6 +42,12 @@ const menus:MenusType[] = [
 ];
 
 export default function Menu(){
+    const [menuConfig,setMenuConfig] = useState<MenuConfigType>({
+        hostMenu:false,
+        globeMenu: false,
+        menu: false
+    })
+
     return(
         <>
         <div className="grid grid-cols-8 items-center">
@@ -66,18 +80,27 @@ export default function Menu(){
                 }
             </div>
 
-            <div className="col-span-2 flex flex-row justify-end gap-x-3">
-                <button className="figtree font-medium text-sm leading-[18px] px-2.5 rounded-full transition-all duration-100 ease-linear hover:bg-[#EBEBEB]/50 hover:cursor-pointer">
+            <div className="col-span-2 flex flex-row justify-end items-center gap-x-3">
+                <div>
+                    <button className="figtree font-medium text-sm leading-[18px] px-2.5 py-2.5 rounded-full transition-all duration-100 ease-linear hover:bg-[#EBEBEB]/50 hover:cursor-pointer" onClick={()=>{setMenuConfig(prev=>({...prev,hostMenu:true}))}}>
                     Become a host
-                </button>
+                    </button>
 
-                <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full">
+                    <HostModal hostModal={menuConfig.hostMenu} setMenuConfig={setMenuConfig}/>
+                </div>
+                
+                <div>
+                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full hover:cursor-pointer">
                     <CiGlobe />
-                </button>
-
-                <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full">
+                    </button>
+                </div>
+                
+                <div>
+                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full hover:cursor-pointer">
                     <IoMenu />
-                </button>
+                    </button>
+                </div>
+
             </div>
         </div>
         </>

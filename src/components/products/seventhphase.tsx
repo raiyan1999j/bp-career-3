@@ -1,6 +1,8 @@
-import { IoMdStar } from "react-icons/io";
+import { useRef, useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { RiArrowDropRightLine } from "react-icons/ri";
+import { carouselHandler, CommonUi } from "../helper/helper";
+
 
 type ServicesType = {
     image: string | null,
@@ -9,6 +11,12 @@ type ServicesType = {
     heading: string | null,
     info: string | null,
     rating: number
+}
+
+type CarouselType = {
+    lastId:number,
+    nextSlideOff: boolean,
+    prevSlideOff: boolean
 }
 
 const services:ServicesType[] = [
@@ -22,7 +30,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -41,7 +49,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -60,7 +68,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -79,7 +87,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -98,7 +106,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -117,7 +125,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -136,7 +144,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -155,7 +163,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -174,7 +182,7 @@ const services:ServicesType[] = [
   height="20"
   fill="rgba(0, 0, 0, 0.5)"
   stroke="white"
-  stroke-width="20"
+  strokeWidth="20"
 >
   <path d="M462.3 62.7c-54.5-46.4-136-38.3-186.4 13.7L256 96l-19.9-19.6C185.7 24.4 104.2 16.3 49.7 62.7c-62 52.8-66.1 149.8-9.9 207.5l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.2-57.7 52.1-154.7-9.8-207.5z"/>
 </svg>
@@ -186,6 +194,17 @@ const services:ServicesType[] = [
 ]
 
 export default function SeventhPhase(){
+    const itemsRef = useRef<{[key:string]:HTMLDivElement|null}>({});
+    const [carouselConfig,setCarouselConfig] = useState<CarouselType>({
+        nextSlideOff:false,
+        prevSlideOff:true,
+        lastId:6
+    })
+
+    const carousel=(action:string)=>{
+        carouselHandler(action,itemsRef,carouselConfig,setCarouselConfig,services.length)
+    }
+
     return(
         <>
         <section className="px-8 mt-8">
@@ -201,55 +220,18 @@ export default function SeventhPhase(){
                 </div>
 
                 <div className="flex flex-row gap-x-2.5">
-                    <button className="h-6 w-6 rounded-full flex justify-center items-center border border-[#d6d3d3] text-[#d6d3d3] transition-all duration-150 ease-linear hover:bg-[#d6d3d3] hover:text-black hover:shadow-[0px_2px_2px_#EBEBEB]">
+                    <button type="button" className={`h-6 w-6 rounded-full flex justify-center items-center border border-[#d6d3d3] text-[#d6d3d3] transition-all duration-150 ease-linear ${carouselConfig.prevSlideOff ? "cursor-not-allowed" : "hover:bg-[#d6d3d3] hover:text-black"}`} onClick={()=>{carousel("previous")}}>
                         <MdKeyboardArrowLeft />
                     </button>
 
-                    <button className="h-6 w-6 rounded-full flex justify-center items-center border border-[#d6d3d3] text-[#d6d3d3] transition-all duration-150 ease-linear hover:bg-[#d6d3d3] hover:text-black hover:shadow-[0px_2px_2px_#EBEBEB]">
+                    <button type="button" className={`h-6 w-6 rounded-full flex justify-center items-center border border-[#d6d3d3] text-[#d6d3d3] transition-all duration-150 ease-linear ${carouselConfig.nextSlideOff ? "cursor-not-allowed" : "hover:bg-[#d6d3d3] hover:text-black"}`} onClick={()=>{carousel("next")}}>
                         <MdKeyboardArrowRight />
                     </button>
                 </div>
             </div>
 
             <div className="w-full mt-2.5">
-                <div className="flex flex-row gap-x-[11px] w-full">
-                    {
-                        services.slice(0,6).map((items,index)=>{
-                            return <div className="w-1/6 rounded-xl overflow-hidden" key={index}>
-                                <div className="h-[196px] w-full relative">
-                                    <img src={items.image ?? ""} alt="servicesImg" className="absolute h-full w-full rounded-xl"/>
-
-                                    <div className="flex flex-row w-full justify-between absolute top-2 px-2">
-                                        <span className="figtree font-semibold text-sm text-black bg-white rounded-full px-1.5">
-                                            {items.title}
-                                        </span>
-
-                                        <span className="text-lg text-black/50">
-                                            {items.icon}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="mt-2.5">
-                                    <h4 className="figtree font-semibold text-sm text-[#222222]">
-                                        {items.heading}
-                                    </h4>
-
-                                    <div className="flex flex-row gap-x-2 items-center mt-1.5">
-                                        <span className="figtree font-normal text-xs text-[#6A6A6A]">
-                                            {items.info}
-                                        </span>
-
-                                        <span className="figtree font-normal text-xs text-[#6A6A6A] flex flex-row items-center">
-                                            <IoMdStar />
-                                            {items.rating}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        })
-                    }
-                </div>
+                <CommonUi services={services} itemsRef={itemsRef}/>
             </div>
         </section>
         </>

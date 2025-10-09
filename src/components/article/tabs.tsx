@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 type TabTopicsType = {
@@ -118,6 +119,8 @@ const tabTopics:TabTopicsType[][] = [
     ]
 ]
 export default function Tabs(){
+    const [currentTab,setCurrentTab] = useState<number>(0);
+
     return(
         <>
         <section className="py-12 px-8 bg-[#F7F7F7] mt-[49px]">
@@ -130,7 +133,7 @@ export default function Tabs(){
             <div className="flex flex-row gap-x-3 w-full border-b border-b-[#DDDDDD] py-[6px] mt-[14px]">
                 {
                     tabMenu.map((items,index)=>{
-                        return <button className="figtree font-medium text-sm relative after:content-'' after:table after:absolute after:-bottom-1.5 after:h-[1px] after:w-full after:bg-black" key={index}>
+                        return <button className={`figtree font-medium text-sm relative ${currentTab === index?"after:content-'' after:table after:absolute after:-bottom-1.5 after:h-[1px] after:w-full after:bg-black text-black":"text-black/50"} hover:cursor-pointer`} key={index} onClick={()=>{setCurrentTab(index)}}>
                             {items}
                         </button>
                     })
@@ -139,7 +142,7 @@ export default function Tabs(){
 
             <div className="grid grid-cols-6 gap-x-2 gap-y-4 mt-8">
                 {
-                    tabTopics[0].map((items,index)=>{
+                    tabTopics[currentTab].map((items,index)=>{
                         return <div key={index}>
                             <a href="#" className="flex flex-col">
                                 <span className="figtree font-medium text-sm text-[#222222]">

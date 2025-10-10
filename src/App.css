@@ -8,3 +8,6 @@
 .customScrollbar::-webkit-scrollbar{
   display: none;
 }
+.modalScrollbar::-webkit-scrollbar-track{
+  margin-right:-20px
+}

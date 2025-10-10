@@ -6,6 +6,7 @@ import { CiGlobe } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
 import HostModal from "./hostmodal";
 import { useState } from "react";
+import GlobeModal from "./globeModal";
 
 type MenusType = {
     icon: string,
@@ -90,13 +91,15 @@ export default function Menu(){
                 </div>
                 
                 <div>
-                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full hover:cursor-pointer">
+                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full transition-all duration-100 ease-in hover:bg-[#d3d2d2]/80 hover:cursor-pointer" onClick={()=>{setMenuConfig(prev=>({...prev,globeMenu:true}))}}>
                     <CiGlobe />
                     </button>
+
+                    <GlobeModal globeModal={menuConfig.globeMenu} setMenuConfig={setMenuConfig}/>
                 </div>
                 
                 <div>
-                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full hover:cursor-pointer">
+                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full transition-all duration-100 ease-in hover:bg-[#d3d2d2]/80 hover:cursor-pointer">
                     <IoMenu />
                     </button>
                 </div>

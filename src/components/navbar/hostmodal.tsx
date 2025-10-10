@@ -49,7 +49,7 @@ export default function HostModal({hostModal,setMenuConfig}:PropsType){
         <section className={`h-full w-screen bg-black/20 fixed top-0 left-0 py-[5%] px-[15%] z-50 ${hostModal?"opacity-100":"opacity-0 pointer-events-none"}`} >
             <div className={`w-full bg-white rounded-xl py-6 px-6 transition-all duration-150 ease-linear ${hostModal?"translate-y-0 opacity-100":"translate-y-1/2 opacity-50"}`} ref={closeDetection}>
                 <div>
-                    <button className="h-6 w-6 flex justify-center items-center rounded-full transition-all duration-75 ease-linear hover:bg-[#DDDDDD]" onClick={()=>{setMenuConfig(prev=>({...prev,hostMenu:false}))}}>
+                    <button className="h-6 w-6 flex justify-center items-center rounded-full transition-all duration-75 ease-linear hover:bg-[#EBEBEB] hover:cursor-pointer" onClick={()=>{setMenuConfig(prev=>({...prev,hostMenu:false}))}}>
                         <RxCross2 />
                     </button>
                 </div>

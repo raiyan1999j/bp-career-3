@@ -5,8 +5,9 @@ import Services from "../../assets/services.png";
 import { CiGlobe } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
 import HostModal from "./hostmodal";
-import { useState } from "react";
-import GlobeModal from "./globeModal";
+import { useEffect, useRef, useState } from "react";
+import GlobeModal from "./globemodal";
+import MenuModal from "./menumodal";
 
 type MenusType = {
     icon: string,
@@ -43,12 +44,25 @@ const menus:MenusType[] = [
 ];
 
 export default function Menu(){
+    const closeDetection = useRef<HTMLDivElement|null>(null);
+
     const [menuConfig,setMenuConfig] = useState<MenuConfigType>({
         hostMenu:false,
         globeMenu: false,
         menu: false
     })
 
+    useEffect(()=>{
+        function handleClose(event: MouseEvent){
+            if(closeDetection.current && !closeDetection.current.contains(event.target as Node)){
+                setMenuConfig(prev=>({...prev,menu:false}))
+            }
+        }
+
+        if(menuConfig.menu) document.addEventListener("mousedown",handleClose);
+
+        return ()=>document.removeEventListener("mousedown",handleClose)
+    },[menuConfig.menu,setMenuConfig])
     return(
         <>
         <div className="grid grid-cols-8 items-center">
@@ -98,10 +112,14 @@ export default function Menu(){
                     <GlobeModal globeModal={menuConfig.globeMenu} setMenuConfig={setMenuConfig}/>
                 </div>
                 
-                <div>
-                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full transition-all duration-100 ease-in hover:bg-[#d3d2d2]/80 hover:cursor-pointer">
+                <div className="relative" ref={closeDetection}>
+                    <button className="bg-[#EBEBEB] text-black h-10 w-10 flex justify-center items-center rounded-full transition-all duration-100 ease-in hover:bg-[#d3d2d2]/80 hover:cursor-pointer" onClick={(event)=>{
+                        event.stopPropagation();
+                        setMenuConfig(prev=>({...prev,menu:!prev.menu}))}}>
                     <IoMenu />
                     </button>
+
+                    <MenuModal menuModal={menuConfig.menu} setMenuConfig={setMenuConfig}/>
                 </div>
 
             </div>

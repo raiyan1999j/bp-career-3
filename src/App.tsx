@@ -16,7 +16,7 @@ export default function App(){
       <Article/>
     </main>
 
-    <footer>
+    <footer className="">
       <Footer/>
     </footer>
     </>

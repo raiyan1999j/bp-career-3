@@ -94,7 +94,7 @@ export default function Menu({navConfig}:PropsType){
     },[menuConfig.menu,setMenuConfig])
     return(
         <>
-        <div className="grid grid-cols-8 items-center">
+        <div className="xl:grid hidden grid-cols-8 items-center">
             <div className="col-span-2">
                 <a href="#">
                     <img src={Pagelogo} alt="pageLogo" className="w-[102px]"/>

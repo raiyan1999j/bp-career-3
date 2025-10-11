@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Filtering from "./filtering";
 import Menu from "./menu";
+import ResponsiveMenu from "./responsivemenu";
+import ResponsiveFilter from "./responsivefilter";
 
 export default function Navbar(){
     const [navConfig,setNavConfig] = useState<boolean>(false);
@@ -11,8 +13,6 @@ export default function Navbar(){
                 setNavConfig(true)
 
                 document.documentElement.style.setProperty('--nav-height','120px');
-
-                console.log(window.scrollY)
             }else{
                 setNavConfig(false);
 
@@ -27,10 +27,13 @@ export default function Navbar(){
     },[])
     return(
         <>
-        <nav className={`w-full px-8 ${navConfig?"py-2.5 fixed top-0 z-50":"pt-[22px] pb-10"} bg-[#FBFBFB] border-b border-b-black/5`}>
+        <nav className={`w-full px-8 ${navConfig?"xl:py-2.5 py-0 fixed top-0 z-50":"xl:pt-[22px] pt-2.5 xl:pb-10 pb-2.5"} bg-[#FBFBFB] border-b border-b-black/5`}>
             <Menu navConfig={navConfig}/>
             <Filtering navConfig={navConfig}/>
+            <ResponsiveMenu/>
         </nav>
+
+        <ResponsiveFilter/>
         </>
     )
 }

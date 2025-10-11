@@ -94,15 +94,15 @@ export default function Menu({navConfig}:PropsType){
     },[menuConfig.menu,setMenuConfig])
     return(
         <>
-        <div className="xl:grid hidden grid-cols-8 items-center">
-            <div className="col-span-2">
+        <div className="xl:grid md:grid hidden grid-cols-8 items-center">
+            <div className="xl:col-span-2 md:col-span-1">
                 <a href="#">
                     <img src={Pagelogo} alt="pageLogo" className="w-[102px]"/>
                 </a>
             </div>
 
-            <div className={`col-span-4`}>
-                <div className={`flex flex-row justify-center transition-all duration-150 ease-linear ${navConfig?"translate-y-[-70%] opacity-0 h-0 overflow-hidden":"translate-y-0"}`}>
+            <div className={`xl:col-span-4 md:col-span-6`}>
+                <div className={`flex flex-row xl:justify-center md:justify-between transition-all duration-150 ease-linear ${navConfig?"translate-y-[-70%] opacity-0 h-0 overflow-hidden":"translate-y-0"}`}>
                 {
                     menus.map((items,index)=>{
                         return <a href={items.link} className="figtree capitalize text-sm font-semibold text-black/50 flex flex-row justify-center items-center relative transition-all duration-150 ease-linear hover:text-black group" key={index}>
@@ -125,7 +125,7 @@ export default function Menu({navConfig}:PropsType){
                 }
                 </div>
 
-                <div className={`flex flex-row w-[60%] mx-auto justify-between py-1.5 bg-white rounded-full border border-black/20 ${navConfig?"opacity-100":"opacity-0"}`}>
+                <div className={`flex flex-row xl:w-[60%] md:w-[90%] mx-auto justify-between py-1.5 bg-white rounded-full border border-black/20 ${navConfig?"opacity-100":"opacity-0 h-0 overflow-hidden"}`}>
                     {
                         configMenu.map((items,index)=>{
                             return <a className="flex flex-row w-full justify-center items-center border-r border-r-black/20 last:border-none" href={items.link} key={index}>
@@ -152,8 +152,8 @@ export default function Menu({navConfig}:PropsType){
                 </div>
             </div>
 
-            <div className="col-span-2 flex flex-row justify-end items-center gap-x-3">
-                <div>
+            <div className="xl:col-span-2 md:col-span-1 flex flex-row justify-end items-center gap-x-3">
+                <div className="md:hidden">
                     <button className="figtree font-medium text-sm leading-[18px] px-2.5 py-2.5 rounded-full transition-all duration-100 ease-linear hover:bg-[#EBEBEB]/50 hover:cursor-pointer" onClick={()=>{setMenuConfig(prev=>({...prev,hostMenu:true}))}}>
                     Become a host
                     </button>

@@ -45,11 +45,13 @@ export default function ResponsiveMenu(){
         }
 
         window.addEventListener("scroll",handleScroll)
+
+        return ()=>{window.removeEventListener("scroll",handleScroll)}
     },[])
 
     return(
         <>
-        <div className="">
+        <div className="xl:hidden md:hidden py-2.5">
             <div className="flex flex-row items-center justify-center w-full h-[56px] rounded-full shadow-md shadow-black/20">
                 <span>
                     <IoSearchSharp />

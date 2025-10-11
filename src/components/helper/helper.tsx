@@ -82,7 +82,7 @@ export function CommonUi({services,itemsRef}:CommonUiProps){
     return <div className="flex flex-row flex-nowrap gap-x-[11px] w-full scroll-smooth overflow-x-scroll customScrollbar">
                     {
                         services.map((items,index)=>{
-                            return <div className="w-[calc(16.67%_-_11px)] shrink-0 rounded-xl overflow-hidden" key={index} id={`items${index + 1}`} ref={(elem)=>{itemsRef.current[`items${index+1}`] = elem}}>
+                            return <div className="xl:w-[calc(16.67%_-_11px)] md:w-[calc(50%_-_11px)] lg:w-[calc(33.33%_-_11px)] w-full shrink-0 rounded-xl overflow-hidden" key={index} id={`items${index + 1}`} ref={(elem)=>{itemsRef.current[`items${index+1}`] = elem}}>
                                 <div className="h-[196px] w-full relative">
                                     <img src={items.image ?? ""} alt="servicesImg" className="absolute h-full w-full rounded-xl"/>
 

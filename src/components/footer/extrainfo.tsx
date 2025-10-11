@@ -71,8 +71,8 @@ export default function ExtraInfo(){
     return(
         <>
         <section className="px-8 bg-[#F7F7F7]">
-            <div className="grid grid-cols-2 border-t border-t-[#6A6A6A]/10 py-6">
-                <div className="flex flex-row items-center gap-x-4">
+            <div className="grid xl:grid-cols-2 md:grid-cols-1 md:justify-center md:items-center grid-cols-1 gap-y-5 border-t border-t-[#6A6A6A]/10 py-6">
+                <div className="flex xl:flex-row flex-wrap md:justify-center items-center gap-x-4">
                     {
                         info.map((items,index)=>{
                             if(items.link){
@@ -97,7 +97,7 @@ export default function ExtraInfo(){
                     }
                 </div>
 
-                <div className="flex flex-row justify-end items-center gap-x-4">
+                <div className="flex flex-row xl:justify-end md:justify-center items-center gap-x-4">
                     {
                         social.map((items,index)=>{
                             if(items.title){

@@ -27,7 +27,7 @@ export default function Navbar(){
     },[])
     return(
         <>
-        <nav className={`w-full px-8 ${navConfig?"xl:py-2.5 py-0 fixed top-0 z-50":"xl:pt-[22px] pt-2.5 xl:pb-10 pb-2.5"} bg-[#FBFBFB] border-b border-b-black/5`}>
+        <nav className={`w-full px-8 ${navConfig?"xl:py-2.5 py-0 fixed top-0 z-50":"xl:pt-[22px] md:pt-[22px] pt-2.5 xl:pb-10 md:pb-10 pb-2.5"} bg-[#FBFBFB] border-b border-b-black/5`}>
             <Menu navConfig={navConfig}/>
             <Filtering navConfig={navConfig}/>
             <ResponsiveMenu/>

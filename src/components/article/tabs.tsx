@@ -140,7 +140,7 @@ export default function Tabs(){
                 }
             </div>
 
-            <div className="grid grid-cols-6 gap-x-2 gap-y-4 mt-8">
+            <div className="grid xl:grid-cols-6 grid-cols-2 gap-x-2 gap-y-4 mt-8">
                 {
                     tabTopics[currentTab].map((items,index)=>{
                         return <div key={index}>

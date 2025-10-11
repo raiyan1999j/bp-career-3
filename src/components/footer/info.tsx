@@ -122,7 +122,7 @@ export default function Info(){
     return(
         <>
         <section className="px-8 pt-20 pb-8 bg-[#F7F7F7]">
-            <div className="grid grid-cols-3 gap-x-4">
+            <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-4">
                 {
                     info.map((items,index)=>{
                         return <div key={index}>

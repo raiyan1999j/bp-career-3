@@ -1,9 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 
-export default function Filtering(){
+type PropsType = {
+    navConfig: boolean
+}
+
+export default function Filtering({navConfig}:PropsType){
     return(
         <>
-        <div className="grid grid-cols-12 items-center w-[70%] mx-auto bg-white border border-[#EBEBEB] rounded-full [&>div]:py-2.5 mt-6">
+        <div className={`grid grid-cols-12 items-center transition-all duration-150 ease-linear mx-auto bg-white border border-[#EBEBEB] rounded-full [&>div]:py-2.5 ${navConfig?"w-[40%] translate-y-[-70%] opacity-0 h-0 overflow-hidden pointer-events-none":"w-[70%] mt-6"}`}>
             
             <div className="col-span-4 pl-8 rounded-full transition-all duration-75 ease-linear hover:bg-[#EBEBEB] h-full flex flex-col justify-center">
                 <div>

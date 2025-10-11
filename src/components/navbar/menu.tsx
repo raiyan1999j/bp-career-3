@@ -8,6 +8,18 @@ import HostModal from "./hostmodal";
 import { useEffect, useRef, useState } from "react";
 import GlobeModal from "./globemodal";
 import MenuModal from "./menumodal";
+import { FaSearch } from "react-icons/fa";
+
+type PropsType = {
+    navConfig: boolean
+}
+
+type ConfigMenuType = {
+    img?:string,
+    title?:string,
+    link?:string,
+    icon?:React.ReactNode
+}
 
 type MenusType = {
     icon: string,
@@ -43,7 +55,24 @@ const menus:MenusType[] = [
     }
 ];
 
-export default function Menu(){
+const configMenu:ConfigMenuType[] = [
+    {
+        img:Home,
+        title:"Anywhere",
+        link:"#"
+    },
+    {
+        title:"Anytime",
+        link:"#"
+    },
+    {
+        title:"Add guests",
+        link:"#",
+        icon:<FaSearch/>
+    },
+]
+
+export default function Menu({navConfig}:PropsType){
     const closeDetection = useRef<HTMLDivElement|null>(null);
 
     const [menuConfig,setMenuConfig] = useState<MenuConfigType>({
@@ -72,7 +101,8 @@ export default function Menu(){
                 </a>
             </div>
 
-            <div className="col-span-4 flex flex-row justify-center">
+            <div className={`col-span-4`}>
+                <div className={`flex flex-row justify-center transition-all duration-150 ease-linear ${navConfig?"translate-y-[-70%] opacity-0 h-0 overflow-hidden":"translate-y-0"}`}>
                 {
                     menus.map((items,index)=>{
                         return <a href={items.link} className="figtree capitalize text-sm font-semibold text-black/50 flex flex-row justify-center items-center relative transition-all duration-150 ease-linear hover:text-black group" key={index}>
@@ -93,6 +123,33 @@ export default function Menu(){
                         </a>
                     })
                 }
+                </div>
+
+                <div className={`flex flex-row w-[60%] mx-auto justify-between py-1.5 bg-white rounded-full border border-black/20 ${navConfig?"opacity-100":"opacity-0"}`}>
+                    {
+                        configMenu.map((items,index)=>{
+                            return <a className="flex flex-row w-full justify-center items-center border-r border-r-black/20 last:border-none" href={items.link} key={index}>
+                                {
+                                    items.img?
+                                    <span className="w-10 h-10 relative">
+                                        <img src={items.img} alt="linkImg" className="absolute w-full h-full"/>
+                                    </span>:null
+                                }
+
+                                <span className="flex flex-row justify-center items-center gap-x-2.5 figtree text-sm font-medium">
+                                    {items.title}
+
+                                    {
+                                        items.icon?
+                                        <span className="h-[30px] w-[30px] rounded-full flex justify-center items-center text-white bg-[#FF385C]">
+                                            {items.icon}
+                                        </span>:null
+                                    }
+                                </span>
+                            </a>
+                        })
+                    }
+                </div>
             </div>
 
             <div className="col-span-2 flex flex-row justify-end items-center gap-x-3">

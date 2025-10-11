@@ -11,7 +11,7 @@ export default function App(){
       <Navbar/>
     </header>
 
-    <main>
+    <main className="mt-[var(--nav-height,0px)]">
       <Products/>
       <Article/>
     </main>

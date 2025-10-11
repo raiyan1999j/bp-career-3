@@ -58,7 +58,7 @@ export default function MenuModal({menuModal,setMenuConfig}:PropsType){
             {
                 menu.map((items,index)=>{
                     if(items.icon && items.title && items.link){
-                        return <span className="py-2.5 relative after:absolute after:h-[1px] after:w-[90%] after:bg-black/10 after:bottom-0 after:left-2.5">
+                        return <span className="py-2.5 relative after:absolute after:h-[1px] after:w-[90%] after:bg-black/10 after:bottom-0 after:left-2.5" key={index}>
                             <a className="flex flex-row items-center gap-x-2.5 px-2.5 py-1.5 hover:bg-black/5" href={items.link} key={index}>
                             <span className="text-lg">
                                 {items.icon}
@@ -72,7 +72,7 @@ export default function MenuModal({menuModal,setMenuConfig}:PropsType){
                     }
 
                     if(items.heading){
-                        return <span className="py-2.5 relative after:absolute after:h-[1px] after:w-[90%] after:bg-black/10 after:bottom-0 after:left-2.5">
+                        return <span className="py-2.5 relative after:absolute after:h-[1px] after:w-[90%] after:bg-black/10 after:bottom-0 after:left-2.5" key={index}>
                             <button className="flex flex-row px-2.5 py-1.5 hover:bg-black/5 hover:cursor-pointer" key={index} onClick={()=>{setMenuConfig(prev=>({...prev,hostMenu:true,menu:false}))}}>
                             <span className="flex flex-col">
                                 <span className="figtree font-normal text-base text-left">
@@ -91,7 +91,7 @@ export default function MenuModal({menuModal,setMenuConfig}:PropsType){
                     }
 
                     if(items.group){
-                        return <span className="py-2.5 relative after:absolute after:h-[1px] after:w-[90%] after:bg-black/10 after:bottom-0 after:left-2.5">
+                        return <span className="py-2.5 relative after:absolute after:h-[1px] after:w-[90%] after:bg-black/10 after:bottom-0 after:left-2.5" key={index}>
                             <span className="flex flex-col">
                             {
                                 items.group.map((subItems,subIndex)=>{
@@ -105,7 +105,7 @@ export default function MenuModal({menuModal,setMenuConfig}:PropsType){
                     }
 
                     if(items.title && items.link){
-                        return <span className="pt-2.5 flex flex-col">
+                        return <span className="pt-2.5 flex flex-col" key={index}>
                             <a className="figtree font-thin text-black px-2.5 py-1.5 hover:bg-black/5" href={items.link} key={index}>
                             {items.title}
                         </a>
